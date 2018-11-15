@@ -1,0 +1,9 @@
+extends layout
+block content
+	include shoppingCart
+	h1= book.title
+	p= book.author
+	p= book.price
+	p= book.description
+	p= book.category
+	a(href="/cart/" + book.id) Add to cart

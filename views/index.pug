@@ -1,0 +1,14 @@
+extends layout
+block content
+	include shoppingCart
+	h1 Welcome to our #{title}
+
+	.container
+		each book in books
+			.book-holder
+				a(href="/books/" + book.id)
+					.book
+						h2= book.title
+						p= book.author
+						p= book.price
+						

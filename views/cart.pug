@@ -1,0 +1,42 @@
+extends layout
+block content
+	include shoppingCart
+	h1 Cart
+	
+	table(style="width: 90%; text-align: center")
+		tr
+			th(style="width: 50%") Title
+			th(style="width: 15%") Author
+			th(style="width: 10%") Price
+			th(style="width: 15%") Quantity
+		if cart
+			each it in cart.items
+				tr
+					td #{it.item.title}
+					td #{it.item.author}
+					td.price #{it.price}
+					td
+						select
+							option(value="1") 1
+							option(value="2") 2
+							option(value="3") 3
+							option(value="4") 4
+							option(value="5") 5
+							option(value="6") 6
+							option(value="7") 7
+							option(value="8") 8
+							option(value="9") 9
+							option(value="10") 10
+					td.qty(hidden) #{it.qty}
+					td.id(hidden) #{it.item._id}
+
+	if cart
+		.cart(style="background: skyblue;")
+			p Total Quantity:
+				span.total-qty #{cart.totalQty}
+			p Total Amount: 
+				span#total-amount #{cart.totalAmount}
+
+			a(href="/") Checkout
+	script(src="https://unpkg.com/axios/dist/axios.min.js")
+	script(src="/javascripts/app.js")

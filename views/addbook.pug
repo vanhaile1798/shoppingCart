@@ -1,0 +1,22 @@
+extends layout
+
+block content
+	h1 Add new book
+	form(action="/admin/addbook" method="POST")
+		div
+			label(for="title") Title
+			input#title(name="title")
+		div
+			label(for="author") Author
+			input#author(name="author")
+		div
+			label(for="price") Price
+			input#price(name="price")
+		div
+			label(for="description") Description
+			textarea#description(name="description", style="height: 150px")
+		div
+			label(for="category") Category
+			input#category(name="category")
+		div
+			input(type="submit", value="Add")
