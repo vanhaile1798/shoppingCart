@@ -11,6 +11,8 @@ if (document.getElementById('total-amount')) {
 
 let price = document.getElementsByClassName('price');
 
+// let itemQty = document.getElementByIdd('itemQty');
+
 // Xử lý sau khi add to cart, add nhiều lần thì select tag sẽ thay đổi, ví dụ add 1 item lần thứ 2 thì option sẽ là 2
 for (let i = 0; i < selectTag.length; i++) {
 	for (let j = 0; j <= 9; j++) {

@@ -2,5 +2,15 @@ extends layout
 
 block content
 
-	h1 Dashboard
-	a(href="admin/addbook") Add book
+	h1= title
+	.add
+		a.dlt-btn.add-btn(href="admin/addbook") Add book
+	.container
+		each book in books
+			.book-holder
+				a(href="/books/" + book.id)
+					.book
+						h2= book.title
+						p= book.author
+						p= book.price
+						a.dlt-btn(href="/books/delete/" + book.id) Delete

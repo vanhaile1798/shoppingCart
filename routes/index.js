@@ -4,6 +4,9 @@ let User = require('../data/models/users');
 
 let Book = require('../data/models/books');
 
+let checkLoggedIn = require('./checkLoggedIn');
+let notLoggedIn = require('./notLoggedIn');
+
 let router = app.Router();
 
 router.get('/', function(req, res) {
@@ -18,19 +21,32 @@ router.get('/', function(req, res) {
 	
 });
 
-router.get('/login', function(req, res) {
+router.get('/login', checkLoggedIn, function(req, res) {
 	res.render('login');
 });
 
-router.post('/login', function(req, res) {
-	res.redirect('/');
+router.post('/login', checkLoggedIn,function(req, res, next) {
+	let data = req.body;
+	User.findOne({username: data.username, password: data.password}, function(err, user) {
+		if (err) {
+			next(err);
+		}
+		if (user) {
+			req.session.user = user;
+			console.log(req.session.user.username);
+			res.redirect('/');
+		} else {
+			res.render('login', {err: 'Wrong username/password'});
+		}
+	});
+	
 });
 
-router.get('/signup', function(req, res) {
+router.get('/signup', checkLoggedIn, function(req, res) {
 	res.render('signup');
 });
 
-router.post('/signup', function(req, res, next) {
+router.post('/signup', checkLoggedIn,function(req, res, next) {
 	let user = new User(req.body);
 	user.save(function(err) {
 		if (err) {
@@ -40,6 +56,15 @@ router.post('/signup', function(req, res, next) {
 	});
 });
 
+router.get('/logout', function(req, res) {
+	req.session.destroy();
+	console.log(req.session);	
+	res.redirect('/');
+});
+
+router.get('/checkout', notLoggedIn, function(req, res) {
+	res.redirect('/');
+});
 
 
 module.exports = router;

@@ -2,8 +2,11 @@ extends layout
 block content
 	include shoppingCart
 	h1= book.title
-	p= book.author
-	p= book.price
-	p= book.description
-	p= book.category
-	a(href="/cart/" + book.id) Add to cart
+	if (error)
+		h2.alert-cl.center-tx= error
+	.book1
+		p= book.author
+		p= book.price
+		p= book.description
+		p= book.category
+		a.add-to-cart.dlt-btn(href="/cart/" + book.id) Add to cart

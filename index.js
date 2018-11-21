@@ -43,7 +43,7 @@ app.set('view engine', 'pug');
 
 
 app.use('/', cartNum, index);
-app.use('/admin', cartNum, admin);
+app.use('/admin', cartNum, authentication, admin);
 app.use('/books', cartNum, book);
 app.use('/cart', cartNum, cart);
 

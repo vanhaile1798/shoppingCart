@@ -11,6 +11,7 @@ block content
 			label(for="password") Password
 			input#password(type="password", name="password")
 		div
-			input(type="submit", value="Log in")
-
+			button.dlt-btn.add-btn(type="submit", style="border: none; cursor: pointer") Login
+	if (err)
+		h2(style="color: #F0EECD; text-align: center; background: #D94B25; padding: 16px")= err
 

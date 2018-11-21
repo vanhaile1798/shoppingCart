@@ -17,4 +17,14 @@ router.get('/:id', function(req, res) {
 
 });
 
+router.get('/delete/:id', function(req, res) {
+	Book.findByIdAndRemove(req.params.id, function(err, book) {
+		if (err) {
+			next(err);
+		}
+		console.log('Removed successfully!');
+		res.redirect('/admin');
+	});
+});
+
 module.exports = router;

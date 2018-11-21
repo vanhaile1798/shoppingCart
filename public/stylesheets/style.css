@@ -1,18 +1,36 @@
+
 * {
 	color: #444;
+	/*font-family: 'Segoe UI', sans-serif;*/
+	
+}
+
+:root {
+	--cl: #138C82;
+	--white: #F0EECD;
+	--cart-cl: #F19C33;
+	--dark: #584632;
+	--warning: #D94B25;
+	}
+body {
+	background: #F0EECD;
 }
 
 /*Login form*/
 
 h1 {
 	text-align: center;
-	background: skyblue;
-	color: #fff;
+	background: var(--cl);
+	color: var(--white);
+	padding: 16px;
+	text-transform: uppercase;
 }
 
 label {
 	width: 100px;
 	display: inline-block;
+	text-align: left;
+
 }
 
 div {
@@ -21,6 +39,15 @@ div {
 
 form {
 	text-align: center;
+}
+
+/*Cart at the top of the page*/
+
+.cart-qty {
+	color: var(--white);
+	background: var(--warning);
+	border-radius: 50%;
+	padding: 4px;
 }
 
 
@@ -33,24 +60,46 @@ form {
 	flex-wrap: wrap;
 	width: 90%;
 	margin: auto;
+	justify-content: center;
 }
 
 .book-holder {
 	width: 25%;
 	box-sizing: border-box;
 	padding: 0 16px;
+	/*color: var(--white);*/
 }
 
 .book {
-	background: skyblue;
+	background: var(--cl);
 	overflow: auto;
 	margin-bottom: 0;
 	height: 230px;
 	padding: 16px;
+	text-align: center;
 }
+
+
 
 a {
 	text-decoration: none;
+	color: var(--white);
+	
+
+
+}
+.nav {
+	padding-top: 16px;
+}
+
+.nav a {
+	margin-right: 16px;
+	color: var(--dark);
+	text-transform: uppercase;
+}
+
+h2, p {
+	color: var(--white);
 }
 
 .shopping-cart {
@@ -58,8 +107,72 @@ a {
 }
 
 .shopping-cart i {
-	color: skyblue;
+	color: var(--cart-cl);
 }
+
+.dlt-btn {
+	padding: 8px 16px;
+	background: #D94B25;
+	color: var(--white);
+}
+
+/*Books route*/
+.book1 {
+	background: var(--cl);
+    overflow: auto;
+    margin-bottom: 0;
+    height: auto;
+	margin: auto;
+    padding: 16px;
+    width: 50%;
+    text-align: center;
+}
+
+.add-to-cart {
+	text-align: center;
+	color: var(--white);
+	background: var(--cart-cl);
+}
+
+.cart {
+	background: var(--cl);
+	padding: 16px;
+	width: 25%;
+}
+
+.tb {
+	flex-grow: 1;
+}
+
+.add {
+	text-align: center;
+	margin-bottom: 24px;
+}
+.add-btn {
+	background: var(--cart-cl);
+}
+
+.checkout {
+	color: var(--cart-cl);
+	font-weight: 700;
+	font-size: 1.5rem;
+}
+table {
+	margin-bottom: 16px;
+}
+
+.alert-cl {
+	color: var(--warning);
+}
+
+.center-tx {
+	text-align: center;
+}
+
+.dsnone {
+	display: none;
+}
+
 
 @media (max-width: 992px) {
 	.book-holder {
@@ -78,7 +191,10 @@ a {
 		width: 100%;
 	}
 	.container {
-		width: 80%;
+		width: 100%;
 		margin: auto;
+	}
+	.cart {
+		width: 50%;
 	}
 }

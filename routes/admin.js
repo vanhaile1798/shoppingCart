@@ -5,7 +5,13 @@ let Book = require('../data/models/books');
 let router = express.Router();
 
 router.get('/', function(req, res) {
-	res.render('admin');
+	let perPage = 8;
+	let page = parseInt(req.query.page - 1) || 0;
+	Book.find({})
+		.skip(perPage * page)
+		.limit(perPage).exec(function(err, books) {
+		res.render('admin', {title: 'Dashboard', books});
+	});
 });
 
 router.get('/addbook', function(req, res) {

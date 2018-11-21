@@ -40,12 +40,26 @@ router.get('/:id', function(req, res, next) {
 
 		let cart = new Cart(req.session.cart ? req.session.cart : {});
 
-		cart.add(book, book.id);
-
-		req.session.cart = cart;
-		// req.session.test.push(book);
-		// console.log(req.session.cart);
-		res.redirect('/cart');
+		
+		if (!cart.items[book.id]) {
+			cart.add(book, book.id);
+			req.session.cart = cart;
+			res.redirect('/cart');
+		} else
+			if (cart.items[book.id].qty < 10) {
+			cart.add(book, book.id);
+			req.session.cart = cart;
+			console.log(req.session.cart);
+			res.redirect('/cart');
+		} else {
+			console.log('Cannot add more books');
+			res.render('book', {error: 'Cannot add more than 10 books at the moment', book});
+		}
+			
+		// console.log(cart);	
+		
+		
+		
 	});
 	
 });
