@@ -1,0 +1,26 @@
+{
+  "books": [
+    {
+      "id": "FNyxgEFqm",
+      "title": "Sapiens: A Brief History of Humankind",
+      "author": "Yuval Noah Harari",
+      "price": 200,
+      "description": "From a renowned historian comes a groundbreaking narrative of humanity’s creation and evolution—a #1 international bestseller—that explores the ways in which biology and history have defined us and enhanced our understanding of what it means to be “human.”",
+      "category": "History"
+    }
+  ],
+  "users": [
+    {
+      "id": "H3IA-HoL2",
+      "username": "admin",
+      "password": "123456",
+      "email": "vanhaile1798@gmail.com"
+    },
+    {
+      "id": "LKxECxCo0",
+      "username": "vanhaile1798",
+      "password": "123456",
+      "email": "vanhaile1798@gmail.com"
+    }
+  ]
+}

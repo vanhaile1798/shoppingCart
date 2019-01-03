@@ -2,6 +2,8 @@ let express = require('express');
 
 let Book = require('../data/models/books');
 
+let db = require('../db/db');
+
 let router = express.Router();
 
 router.get('/', function(req, res) {
@@ -33,41 +35,45 @@ router.get('/:id', function(req, res, next) {
 	}
 
 
-	Book.findById(req.params.id, function(err, book) {
-		if (err) {
-			return next(err);
-		}
+	// Book.findById(req.params.id, function(err, book) {
+	// 	if (err) {
+	// 		return next(err);
+	// 	}
+	let book = db
+				.get('books')
+				.find({id: req.params.id})
+				.value();
 
-		let cart = new Cart(req.session.cart ? req.session.cart : {});
+	let cart = new Cart(req.session.cart ? req.session.cart : {});
 
-		
-		if (!cart.items[book.id]) {
-			cart.add(book, book.id);
-			req.session.cart = cart;
-			res.redirect('/cart');
-		} else
-			if (cart.items[book.id].qty < 10) {
-			cart.add(book, book.id);
-			req.session.cart = cart;
-			console.log(req.session.cart);
-			res.redirect('/cart');
-		} else {
-			console.log('Cannot add more books');
-			res.render('book', {error: 'Cannot add more than 10 books at the moment', book});
-		}
+	
+	if (!cart.items[book.id]) {
+		cart.add(book, book.id);
+		req.session.cart = cart;
+		res.redirect('/cart');
+	} else
+		if (cart.items[book.id].qty < 10) {
+		cart.add(book, book.id);
+		req.session.cart = cart;
+		console.log(req.session.cart);
+		res.redirect('/cart');
+	} else {
+		console.log('Cannot add more books');
+		res.render('book', {error: 'Cannot add more than 10 books at the moment', book});
+	}
 			
 		// console.log(cart);	
 		
 		
 		
-	});
+	// });
 	
 });
 
 router.post('/update', function(req, res, next) {
 	let data = req.body;
 	let items = req.session.cart.items;
-	// console.log(Object.keys(items));
+	
 	for (let index in items) {
 		if (index == data.id) {
 			

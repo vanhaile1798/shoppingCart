@@ -57,6 +57,7 @@ for (let i = 0; i < selectTag.length; i++) {
 			totalAmount: totalAmt,
 			totalQty: totalQty
 		};
+		console.log(data);
 		
 		axios.post('/cart/update', data) 
 					.then(function (response) {

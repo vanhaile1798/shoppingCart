@@ -3,8 +3,15 @@ const port = 3030;
 
 let path = require('path');
 
-let mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/bookstore', { useNewUrlParser: true});
+// Use mongodb
+
+// let mongoose = require('mongoose');
+// mongoose.connect('mongodb://127.0.0.1:27017/bookstore', { useNewUrlParser: true});
+
+// Use lowdb
+
+let db = require('./db/db');
+
 
 let bodyParser = require('body-parser');
 let session = require('express-session');
@@ -46,6 +53,11 @@ app.use('/', cartNum, index);
 app.use('/admin', cartNum, authentication, admin);
 app.use('/books', cartNum, book);
 app.use('/cart', cartNum, cart);
+
+// app.use('/', index);
+// app.use('/admin', admin);
+// app.use('/books', book);
+// app.use('/cart', cart);
 
 app.listen(port, function() {
 	console.log(`Server is running on port ${3030}`);
